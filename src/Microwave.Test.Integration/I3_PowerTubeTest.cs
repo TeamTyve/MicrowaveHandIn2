@@ -17,6 +17,7 @@ namespace Microwave.Test.Integration
         private IOutput output;
         private StringWriter sw;
 
+
         [SetUp]
         public void Setup()
         {
