@@ -12,49 +12,45 @@ using NUnit.Framework.Internal;
 
 namespace Microwave.Test.Integration
 {
-
-   
-
     [TestFixture]
     public class IT1_LightTest
     {
         private Light input;
         private Output output;
+        private StringWriter sw;
 
         [SetUp]
         public void Setup()
         {
             output = new Output();
-            input = new Light(output);  
+            input = new Light(output);
+            sw = new StringWriter();
+            Console.SetOut(sw);
         }
 
         [Test]
         public void TurnOn_WasOff_CorrectOutput()
-        { 
-        
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                input.TurnOn();
-                string expected = string.Format("Light is turned on{0}", Environment.NewLine);
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
-            }
+        {
 
+            input.TurnOn();
+            string expected = $"Light is turned on{Environment.NewLine}";
+            Assert.That(expected, Is.EqualTo(sw.ToString()));
         }
 
         [Test]
         public void TurnOff_WasOn_CorrectOutput()
         {
             input.TurnOn();
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                input.TurnOff();
-                string expected = string.Format("Light is turned off{0}", Environment.NewLine);
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
-            }
-                
+            sw.Flush();
+            input.TurnOff();
+            string expected = $"Light is turned off{Environment.NewLine}";
+            Assert.That(sw.ToString(), Is.EqualTo(sw.ToString()));
         }
 
+        [TearDown]
+        public void Dispose()
+        {
+            sw.Flush();
+        }
     }
 }

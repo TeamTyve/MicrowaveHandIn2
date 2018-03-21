@@ -5,21 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MicrowaveOvenClasses.Boundary;
+using MicrowaveOvenClasses.Interfaces;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
     class I3_PowerTubeTest
     {
-        private PowerTube input;
-        private Output output;
+        private IPowerTube input;
+        private IOutput output;
+        private StringWriter sw;
+
 
         [SetUp]
         public void Setup()
         {
             output = new Output();
             input = new PowerTube(output);
-            Console.WriteLine();
+            sw = new StringWriter();
+            Console.SetOut(sw);
         }
 
         [TestCase(0)]
@@ -34,7 +39,6 @@ namespace Microwave.Test.Integration
         public void TurnOn_NoThrow(int power)
         {
             Assert.DoesNotThrow(() => input.TurnOn(power));
-            Console.WriteLine();
         }
 
         [Test]
@@ -48,13 +52,17 @@ namespace Microwave.Test.Integration
         public void TurnOff_IsOn_OutputsTurnedOff()
         {
             input.TurnOn(1);
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                input.TurnOff();
-                string expected = string.Format("PowerTube turned off{0}", Environment.NewLine);
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
-            }
+            sw = new StringWriter();
+            Console.SetOut(sw);
+            input.TurnOff();
+            var expected = $"PowerTube turned off{Environment.NewLine}";
+            Assert.That(expected, Is.EqualTo(sw.ToString()));
+        }
+
+        [TearDown]
+        public void Dispose()
+        {
+            sw.Flush();
         }
 
     }
