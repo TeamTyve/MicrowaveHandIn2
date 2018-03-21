@@ -105,6 +105,7 @@
     <Compile Include="I5_CookControllerTest.cs" />
     <Compile Include="I7_UserInterfaceTest.cs" />
     <Compile Include="I6_UserInterface.cs" />
+    <Compile Include="I9_UserInterface_Button.cs" />
     <Compile Include="IT1_LightTest.cs" />
     <Compile Include="IT4_CookControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
