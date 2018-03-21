@@ -16,7 +16,7 @@ namespace Microwave.Test.Integration
     // ReSharper disable once InconsistentNaming
     public class I09UserInterfaceButtonTest
     {
-        private IUserInterface iut;
+        private IUserInterface userInterface;
         private IButton powerButton;
         private IButton timeButton;
         private IButton startCancelButton;
@@ -30,14 +30,14 @@ namespace Microwave.Test.Integration
         public void SetUp()
         {
             output = Substitute.For<IOutput>();
-            powerButton = Substitute.For<IButton>();
-            timeButton = Substitute.For<IButton>();
+            powerButton = new Button();
+            timeButton = new Button();
             startCancelButton = new Button();
             door = new Door();
             display = new Display(output);
             light = new Light(output);
             cookController = Substitute.For<ICookController>();
-            iut = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cookController);
+            userInterface = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cookController);
         }
 
         // Start-CancelButton
@@ -45,8 +45,8 @@ namespace Microwave.Test.Integration
         [Test]
         public void StartCancelButton_SetPower_DoesntTurnLightOff()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
-            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+            powerButton.Press();
+            startCancelButton.Press();
 
             // In the code Light is being turned off, even though it was never turned on. This negates the call and is an error.
             // We've chosen not to change the source code.
@@ -56,8 +56,8 @@ namespace Microwave.Test.Integration
         [Test]
         public void StartCancelButton_SetPower_ReturnsReadyState()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
-            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+            powerButton.Press();
+            startCancelButton.Press();
 
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("Display")));
         }
@@ -65,9 +65,9 @@ namespace Microwave.Test.Integration
         [Test]
         public void StartCancelButton_StartCooking_ReturnsReadyState()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
-            iut.OnTimePressed(timeButton, EventArgs.Empty);
-            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+            powerButton.Press();
+            timeButton.Press();
+            startCancelButton.Press();
 
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
         }
@@ -75,10 +75,10 @@ namespace Microwave.Test.Integration
         [Test]
         public void StartCancelButton_StopCooking_ReturnsReadyState_ClearedCalled()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
-            iut.OnTimePressed(timeButton, EventArgs.Empty);
-            iut.OnTimePressed(timeButton, EventArgs.Empty);
-            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+            powerButton.Press();
+            timeButton.Press();
+            timeButton.Press();
+            startCancelButton.Press();
 
             // Turn off light redundant again.
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
@@ -89,8 +89,8 @@ namespace Microwave.Test.Integration
         [Test]
         public void PowerButton_IncreasePower_ReturnsPowerState()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
+            powerButton.Press();
+            powerButton.Press();
 
             // Turn off light redundant again.
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50")));
@@ -101,14 +101,14 @@ namespace Microwave.Test.Integration
         [Test]
         public void TimeButton_TimeButtonPressed_ReturnsTimeState()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
-            iut.OnTimePressed(timeButton, EventArgs.Empty);
-            iut.OnTimePressed(timeButton, EventArgs.Empty);
+            powerButton.Press();
+            timeButton.Press();
+            timeButton.Press();
 
             // Turn off light redundant again.
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("02:00")));
-            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+            userInterface.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
         }
     }
 }
