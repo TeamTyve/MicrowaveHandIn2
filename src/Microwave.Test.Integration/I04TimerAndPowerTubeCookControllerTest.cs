@@ -36,13 +36,13 @@ namespace Microwave.Test.Integration
 
         }
 
-        [TestCase(50,30)]
+        [TestCase(50,3000)]
         [TestCase(0,0)]
-        [TestCase(1, 1000)]
+        [TestCase(1, 10)]
         public void StartCooking_ResultIsCallToTimerAndPowerTube(int a, int b)
         {
             input.StartCooking(a,b);
-            outputTimer.Received(1).Start(b);
+            outputTimer.Received(1).Start(b*1000);
             powerTube.Received(1).TurnOn(a);
         }
 

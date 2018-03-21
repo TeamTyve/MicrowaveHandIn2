@@ -28,14 +28,14 @@ namespace Microwave.Test.Integration
         }
 
         [TestCase(0)]
-        [TestCase(101)]
+        [TestCase(701)]
         public void TurnOn_ThrowsException(int power)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => input.TurnOn(power));
         }
 
         [TestCase(1)]
-        [TestCase(100)]
+        [TestCase(700)]
         public void TurnOn_NoThrow(int power)
         {
             Assert.DoesNotThrow(() => input.TurnOn(power));
