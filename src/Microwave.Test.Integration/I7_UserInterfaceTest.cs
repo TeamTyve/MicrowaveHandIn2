@@ -25,6 +25,7 @@ namespace Microwave.Test.Integration
         private ILight light;
         private ICookController cookController;
         private static StringWriter sw;
+
         [SetUp]
         public void Setup()
         {
@@ -121,13 +122,13 @@ namespace Microwave.Test.Integration
             timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             string expected = string.Format($"Display shows: 01:00{Environment.NewLine}");
             Assert.That(expected, Is.EqualTo(sw.ToString()));
-        
+
         }
 
         [Test]
         public void TimeButton_Pressed2_power50()
         {
-            
+
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
                 timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             sw.GetStringBuilder().Clear();
@@ -135,13 +136,13 @@ namespace Microwave.Test.Integration
 
                 string expected = string.Format($"Display shows: 02:00{Environment.NewLine}");
                 Assert.That(expected, Is.EqualTo(sw.ToString()));
-            
+
         }
 
         [Test]
         public void DoorOpened_TimeButtonPressed_power50()
         {
-           
+
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
                 timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             sw.GetStringBuilder().Clear();
@@ -149,13 +150,13 @@ namespace Microwave.Test.Integration
 
                 string expected = string.Format($"Display cleared{Environment.NewLine}");
                 Assert.That(expected, Is.EqualTo(sw.ToString()));
-            
+
         }
 
         [Test]
         public void Cooking_CookingDone_DisplayCleares()
         {
-            
+
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
                 timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             sw.GetStringBuilder().Clear();
@@ -163,7 +164,7 @@ namespace Microwave.Test.Integration
 
                 string expected = string.Format($"Display cleared{Environment.NewLine}");
                 Assert.That(expected, Is.EqualTo(sw.ToString()));
-            
+
         }
     }
 }
