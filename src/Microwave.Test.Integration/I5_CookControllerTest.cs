@@ -27,9 +27,9 @@ namespace Microwave.Test.Integration
         {
             timer = Substitute.For<ITimer>();
             powerTube = Substitute.For<IPowerTube>();
-            
+
             Outputfortest = new Output();
-            output = new Display(Outputfortest); 
+            output = new Display(Outputfortest);
             input = new CookController(timer,output,powerTube);
             sw = new StringWriter();
             Console.SetOut(sw);
@@ -40,7 +40,7 @@ namespace Microwave.Test.Integration
         [TestCase(0, 0, 0)]
         public void TimerTick_DisplaysCorrectOutput(int a, int b, int c)
         {
-            input.StartCooking(50, 60); 
+            input.StartCooking(50, 60);
             timer.TimeRemaining.Returns(a);
             timer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
 
@@ -49,7 +49,8 @@ namespace Microwave.Test.Integration
             output.ShowTime(a, b);
                 string expected = string.Format($"Display shows: {a:D2}:{b:D2}{Environment.NewLine}");
                 Assert.That(expected, Is.EqualTo(sw.ToString()));
-            
+            input.Stop();
+
         }
     }
 }

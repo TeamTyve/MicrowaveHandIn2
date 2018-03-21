@@ -100,6 +100,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="I10_UserInterface_Door.cs" />
     <Compile Include="I2_DisplayTest.cs" />
     <Compile Include="I3_PowerTubeTest.cs" />
     <Compile Include="I8_UserInterfaceTest.cs" />
