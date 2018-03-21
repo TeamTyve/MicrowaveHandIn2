@@ -14,7 +14,7 @@ namespace Microwave.Test.Integration
 {
     [TestFixture]
     // ReSharper disable once InconsistentNaming
-    public class I9_UserInterface_Button
+    public class I09UserInterfaceButtonTest
     {
         private IUserInterface iut;
         private IButton powerButton;

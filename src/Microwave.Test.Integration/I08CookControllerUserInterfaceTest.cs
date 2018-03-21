@@ -12,7 +12,7 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    class I8_UserInterfaceTest
+    class I08CookControllerUserInterfaceTest
     {
         private IUserInterface iut;
         private ICookController cooker;

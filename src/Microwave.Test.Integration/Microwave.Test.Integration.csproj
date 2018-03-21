@@ -100,16 +100,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="I10_UserInterface_Door.cs" />
-    <Compile Include="I2_DisplayTest.cs" />
-    <Compile Include="I3_PowerTubeTest.cs" />
-    <Compile Include="I8_UserInterfaceTest.cs" />
-    <Compile Include="I5_CookControllerTest.cs" />
-    <Compile Include="I7_UserInterfaceTest.cs" />
-    <Compile Include="I6_UserInterface.cs" />
-    <Compile Include="I9_UserInterface_Button.cs" />
-    <Compile Include="IT1_LightTest.cs" />
-    <Compile Include="IT4_CookControllerTest.cs" />
+    <Compile Include="I10UserInterfaceDoorTest.cs" />
+    <Compile Include="I02OutputDisplayTest.cs" />
+    <Compile Include="I03OutputPowerTubeTest.cs" />
+    <Compile Include="I08CookControllerUserInterfaceTest.cs" />
+    <Compile Include="I05DisplayCookControllerTest.cs" />
+    <Compile Include="I07DisplayUserInterfaceTest.cs" />
+    <Compile Include="I06LightUserInterfaceTest.cs" />
+    <Compile Include="I09UserInterfaceButtonTest.cs" />
+    <Compile Include="I01OutputLightTest.cs" />
+    <Compile Include="I04TimerAndPowerTubeCookControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
