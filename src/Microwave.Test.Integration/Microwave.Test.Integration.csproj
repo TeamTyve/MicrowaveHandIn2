@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="I2_DisplayTest.cs" />
     <Compile Include="I3_PowerTubeTest.cs" />
+    <Compile Include="I6_UserInterface.cs" />
     <Compile Include="IT1_LightTest.cs" />
     <Compile Include="IT4_CookControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +70,9 @@
       <Project>{2b04da6b-afe9-4548-aa05-84d806ba0fa4}</Project>
       <Name>MicrowaveOvenClasses</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

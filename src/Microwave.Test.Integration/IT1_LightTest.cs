@@ -13,7 +13,7 @@ using NUnit.Framework.Internal;
 namespace Microwave.Test.Integration
 {
 
-   
+
 
     [TestFixture]
     public class IT1_LightTest
@@ -25,13 +25,13 @@ namespace Microwave.Test.Integration
         public void Setup()
         {
             output = new Output();
-            input = new Light(output);  
+            input = new Light(output);
         }
 
         [Test]
         public void TurnOn_WasOff_CorrectOutput()
-        { 
-        
+        {
+
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
@@ -53,7 +53,7 @@ namespace Microwave.Test.Integration
                 string expected = string.Format("Light is turned off{0}", Environment.NewLine);
                 Assert.That(expected, Is.EqualTo(sw.ToString()));
             }
-                
+
         }
 
     }
