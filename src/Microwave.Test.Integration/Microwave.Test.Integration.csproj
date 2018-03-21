@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="I2_DisplayTest.cs" />
     <Compile Include="I3_PowerTubeTest.cs" />
+    <Compile Include="I8_UserInterfaceTest.cs" />
     <Compile Include="I5_CookControllerTest.cs" />
     <Compile Include="I7_UserInterfaceTest.cs" />
     <Compile Include="I6_UserInterface.cs" />
