@@ -122,7 +122,6 @@ namespace Microwave.Test.Integration
             timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             string expected = string.Format($"Display shows: 01:00{Environment.NewLine}");
             Assert.That(expected, Is.EqualTo(sw.ToString()));
-
         }
 
         [Test]
