@@ -12,7 +12,7 @@ using NUnit.Framework.Internal;
 
 namespace Microwave.Test.Integration
 {
-    [TestFixture()]
+    [TestFixture]
     // ReSharper disable once InconsistentNaming
     public class I9_UserInterface_Button
     {
@@ -108,6 +108,7 @@ namespace Microwave.Test.Integration
             // Turn off light redundant again.
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("02:00")));
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
         }
     }
 }
