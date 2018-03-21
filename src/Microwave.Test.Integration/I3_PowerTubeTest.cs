@@ -14,6 +14,7 @@ namespace Microwave.Test.Integration
         private PowerTube input;
         private Output output;
 
+
         [SetUp]
         public void Setup()
         {
