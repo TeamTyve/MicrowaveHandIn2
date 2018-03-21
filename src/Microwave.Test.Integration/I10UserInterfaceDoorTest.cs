@@ -13,7 +13,7 @@ namespace Microwave.Test.Integration
 {
     public class I10UserInterfaceDoorTest
     {
-        private IUserInterface iut;
+        private IUserInterface userInterface;
         private IButton powerButton;
         private IButton timeButton;
         private IButton startCancelButton;
@@ -34,13 +34,13 @@ namespace Microwave.Test.Integration
             output = Substitute.For<IOutput>();
             light = new Light(output);
             cookController = Substitute.For<ICookController>();
-            iut = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cookController);
+            userInterface = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cookController);
         }
 
         [Test]
         public void DoorOpens_TurnsOnLight()
         {
-            iut.OnDoorOpened(door, EventArgs.Empty);
+            door.Open();
 
             // Turns Light on (Opens door)
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
@@ -49,9 +49,9 @@ namespace Microwave.Test.Integration
         [Test]
         public void DoorOpens_DoorClosing_TurnsOffLight()
         {
-            iut.OnDoorOpened(door, EventArgs.Empty);
+            door.Open();
 
-            iut.OnDoorClosed(door, EventArgs.Empty);
+            door.Close();
 
             // Turns Light on (Opens door)
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
@@ -62,9 +62,9 @@ namespace Microwave.Test.Integration
         [Test]
         public void PressPower_DoorOpening_OpensDoor_TurnsOnLight()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
+            userInterface.OnPowerPressed(powerButton, EventArgs.Empty);
 
-            iut.OnDoorOpened(door, EventArgs.Empty);
+            door.Open();
 
             // Turns Light on (Opens door)
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
@@ -73,10 +73,10 @@ namespace Microwave.Test.Integration
         [Test]
         public void PressPowerAndTime_OpensDoor_TurnsOnLight()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
-            iut.OnTimePressed(timeButton, EventArgs.Empty);
+            userInterface.OnPowerPressed(powerButton, EventArgs.Empty);
+            userInterface.OnTimePressed(timeButton, EventArgs.Empty);
 
-            iut.OnDoorOpened(door, EventArgs.Empty);
+            door.Open();
 
             // Opens Door
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
@@ -85,11 +85,12 @@ namespace Microwave.Test.Integration
         [Test]
         public void PressPowerAndTime_StartCooking_DoorOpen_TurnsLightOn()
         {
-            iut.OnPowerPressed(powerButton, EventArgs.Empty);
-            iut.OnTimePressed(timeButton, EventArgs.Empty);
-            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+            userInterface.OnPowerPressed(powerButton, EventArgs.Empty);
+            userInterface.OnTimePressed(timeButton, EventArgs.Empty);
+            userInterface.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
 
-            iut.OnDoorOpened(door, EventArgs.Empty);
+            door.Open();
+
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
         }
     }
