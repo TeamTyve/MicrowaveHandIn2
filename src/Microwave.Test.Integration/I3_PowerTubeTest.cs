@@ -51,7 +51,8 @@ namespace Microwave.Test.Integration
         public void TurnOff_IsOn_OutputsTurnedOff()
         {
             input.TurnOn(1);
-            sw.Flush();
+            sw = new StringWriter();
+            Console.SetOut(sw);
             input.TurnOff();
             var expected = $"PowerTube turned off{Environment.NewLine}";
             Assert.That(expected, Is.EqualTo(sw.ToString()));
