@@ -14,7 +14,7 @@ namespace Microwave.Test.Integration
 {
 
     [TestFixture]
-    class I5_CookControllerTest
+    class I05_DisplayCookControllerTest
     {
         private CookController input;
         private Display output;

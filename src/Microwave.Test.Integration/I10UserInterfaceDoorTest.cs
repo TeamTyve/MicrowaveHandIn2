@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    public class I10_UserInterface_Door
+    public class I10UserInterfaceDoorTest
     {
         private IUserInterface iut;
         private IButton powerButton;

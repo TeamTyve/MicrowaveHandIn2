@@ -13,7 +13,7 @@ namespace Microwave.Test.Integration
 {
     [TestFixture]
     // ReSharper disable once InconsistentNaming
-    public class I6_UserInterface
+    public class I06LightUserInterfaceTest
     {
         private IUserInterface iut;
 

@@ -13,7 +13,7 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    class IT4_CookControllerTest
+    class I04_TimerAndPowerTubeCookControllerTest
     {
         private CookController input;
         private ITimer outputTimer;

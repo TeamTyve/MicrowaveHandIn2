@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    class I7_UserInterfaceTest
+    class I07DisplayUserInterfaceTest
     {
         private Display output;
         private UserInterface input;

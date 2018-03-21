@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    class I2_DisplayTest
+    class I02OutputDisplayTest
     {
         private Display input;
         private Output output;
@@ -25,7 +25,7 @@ namespace Microwave.Test.Integration
         [TestCase(2,30)]
         public void ShowTime_MinAndSec_FormattedString(int a, int b)
         {
-            
+
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
