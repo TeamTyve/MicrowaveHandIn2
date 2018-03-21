@@ -40,7 +40,7 @@ namespace Microwave.Test.Integration
             output = Substitute.For<IOutput>();
             timer = Substitute.For<ITimer>();
             powerTube = Substitute.For<IPowerTube>();
-            light = Substitute.For<ILight>();
+            light = new Light(output);
             display = Substitute.For<IDisplay>();
             cooker = new CookController(timer, display, powerTube);
 
@@ -52,10 +52,123 @@ namespace Microwave.Test.Integration
                 cooker);
         }
 
+
         [Test]
-        public void OnStartCancelPressed()
+        public void DoorOpens_TurnsOnLight()
         {
-            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            iut.OnDoorOpened(door, EventArgs.Empty);
+
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
+        }
+
+        [Test]
+        public void DoorCloses_TurnsOffLight()
+        {
+            iut.OnDoorOpened(door, EventArgs.Empty);
+            output.ClearReceivedCalls();
+            iut.OnDoorClosed(door, EventArgs.Empty);
+
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
+        }
+
+        [Test]
+        public void OnPowerPressed_DoorOpens_TurnOnLight()
+        {
+            iut.OnPowerPressed(powerButton, EventArgs.Empty);
+            iut.OnDoorOpened(door, EventArgs.Empty);
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
+        }
+
+
+
+
+
+
+        [Test]
+        public void OnStartCancelPressed_DoorOpened_NoOutput()
+        {
+            door.Open();
+            output.ClearReceivedCalls();
+
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+
+            output.DidNotReceive().OutputLine(Arg.Any<string>());
+        }
+
+        [Test]
+        public void OnStartCancelPressed_DoorClosed_NoOutput()
+        {
+            door.Open();
+            output.ClearReceivedCalls();
+            door.Close();
+
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+
+            output.DidNotReceive().OutputLine(Arg.Any<string>());
+        }
+
+        [Test]
+        public void OnStartCancelPressed_ReadyState_NoOutput()
+        {
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+
+            output.DidNotReceive().OutputLine(Arg.Any<string>());
+        }
+
+        [Test]
+        public void OnStartCancelPressed_SetPowerState_NoOutput()
+        {
+            iut.OnPowerPressed(powerButton, EventArgs.Empty);
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+
+            output.DidNotReceive().OutputLine(Arg.Any<string>());
+            //output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
+        }
+
+        [Test]
+        public void OnStartCancelPressed_SetPowerState_LightIsTurnedOn()
+        {
+            iut.OnPowerPressed(powerButton, EventArgs.Empty);
+
+            light.TurnOff();
+
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+
+            output.DidNotReceive().OutputLine(Arg.Any<string>());
+        }
+
+        [Test]
+        public void OnStartCancelPressed_SetPowerState_LightsTurnOff()
+        {
+            iut.OnPowerPressed(powerButton, EventArgs.Empty);
+            light.TurnOn();
+
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
+        }
+
+        [Test]
+        public void OnTimeButtonPressedAndOnStartCancelPressed_SetTimeState_LightTurnOn()
+        {
+            iut.OnPowerPressed(powerButton, EventArgs.Empty);
+            iut.OnTimePressed(timeButton, EventArgs.Empty);
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
+        }
+
+        [Test]
+        public void OnStartCancelPressed_SetTimeState_LightIsTurnedOn()
+        {
+            iut.OnPowerPressed(powerButton, EventArgs.Empty);
+            iut.OnTimePressed(timeButton, EventArgs.Empty);
+
+            light.TurnOff();
+
+            iut.OnStartCancelPressed(startCancelButton, EventArgs.Empty);
+
+            output.DidNotReceive().OutputLine(Arg.Any<string>());
         }
 
     }
