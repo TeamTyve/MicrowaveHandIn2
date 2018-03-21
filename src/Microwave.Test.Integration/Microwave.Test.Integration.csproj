@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="I2_DisplayTest.cs" />
     <Compile Include="I3_PowerTubeTest.cs" />
+    <Compile Include="I8_UserInterfaceTest.cs" />
     <Compile Include="IT1_LightTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
