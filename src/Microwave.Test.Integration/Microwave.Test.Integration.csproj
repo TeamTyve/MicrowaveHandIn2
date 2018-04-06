@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="I04PowerTubeCookControllerTest.cs" />
     <Compile Include="I10UserInterfaceDoorTest.cs" />
     <Compile Include="I02OutputDisplayTest.cs" />
     <Compile Include="I03OutputPowerTubeTest.cs" />
@@ -101,7 +102,7 @@
     <Compile Include="I06LightUserInterfaceTest.cs" />
     <Compile Include="I09UserInterfaceButtonTest.cs" />
     <Compile Include="I01OutputLightTest.cs" />
-    <Compile Include="I04TimerAndPowerTubeCookControllerTest.cs" />
+    <Compile Include="I04TimerCookControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
