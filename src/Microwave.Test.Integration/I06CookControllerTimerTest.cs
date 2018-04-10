@@ -51,8 +51,9 @@ namespace Microwave.Test.Integration
             input.StartCooking(50, 21);
 
             Thread.Sleep(1000);
+            input.OnTimerTick(timer, EventArgs.Empty);
 
-            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: {(21 / 60) / 1000}:{(21 % 60) / 1000}")));
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: 00:20")));
         }
 
         [Test]
@@ -73,7 +74,7 @@ namespace Microwave.Test.Integration
 
             input.OnTimerTick(timer, EventArgs.Empty);
 
-            output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"50 %")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"00:21")));
         }
     }
 }
