@@ -15,22 +15,21 @@ namespace Microwave.Test.Integration
     [TestFixture]
     class I07DisplayUserInterfaceTest
     {
-        private Display output;
+        private Display display;
         private UserInterface input;
-        private IOutput Outputfortest;
+        private IOutput output;
         private IButton powerButton;
         private IButton timeButton;
         private IButton startCancelButton;
         private IDoor door;
         private ILight light;
         private ICookController cookController;
-        private static StringWriter sw;
 
         [SetUp]
         public void Setup()
         {
-            Outputfortest = new Output();
-            output = new Display(Outputfortest);
+            output = Substitute.For<IOutput>();
+            display = new Display(output);
             powerButton = Substitute.For<IButton>();
             timeButton = Substitute.For<IButton>();
             startCancelButton = Substitute.For<IButton>();
@@ -41,12 +40,9 @@ namespace Microwave.Test.Integration
                 timeButton,
                 startCancelButton,
                 door,
-                output,
+                display,
                 light,
                 cookController);
-            sw = new StringWriter();
-            Console.SetOut(sw);
-
         }
 
 
@@ -56,19 +52,17 @@ namespace Microwave.Test.Integration
             door.Opened += Raise.EventWith(this, EventArgs.Empty);
             door.Closed += Raise.EventWith(this, EventArgs.Empty);
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            string expected = string.Format($"Display shows: 50 W{Environment.NewLine}");
-            Assert.That(expected, Is.EqualTo(sw.ToString()));
 
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 W")));
         }
 
         [Test]
         public void Ready_powerbutton_power50()
         {
 
-            sw.GetStringBuilder().Clear();
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            string expected = string.Format($"Display shows: 50 W{Environment.NewLine}");
-            Assert.That(expected, Is.EqualTo(sw.ToString()));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 W")));
+
 
         }
 
@@ -80,24 +74,20 @@ namespace Microwave.Test.Integration
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             }
-            sw.GetStringBuilder().Clear();
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            string expected = string.Format($"Display shows: 350 W{Environment.NewLine}");
-            Assert.That(expected, Is.EqualTo(sw.ToString()));
 
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("350")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("700")));
         }
 
         [Test]
         public void CancelButton_DisplayCleared_power50()
         {
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            sw.GetStringBuilder().Clear();
             startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            string expected = string.Format($"Display cleared{Environment.NewLine}");
-            Assert.That(expected, Is.EqualTo(sw.ToString()));
-
-
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
         }
 
         [Test]
@@ -105,11 +95,9 @@ namespace Microwave.Test.Integration
         {
 
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            sw.GetStringBuilder().Clear();
             door.Opened += Raise.EventWith(this, EventArgs.Empty);
-            string expected = string.Format($"Display cleared{Environment.NewLine}");
-            Assert.That(expected, Is.EqualTo(sw.ToString()));
 
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
         }
 
         [Test]
@@ -117,53 +105,43 @@ namespace Microwave.Test.Integration
         {
 
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            sw.GetStringBuilder().Clear();
 
             timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            string expected = string.Format($"Display shows: 01:00{Environment.NewLine}");
-            Assert.That(expected, Is.EqualTo(sw.ToString()));
+
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
         }
 
         [Test]
         public void TimeButton_Pressed2_power50()
         {
 
-                powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-                timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            sw.GetStringBuilder().Clear();
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-                string expected = string.Format($"Display shows: 02:00{Environment.NewLine}");
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
-
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("02:00")));
         }
 
         [Test]
         public void DoorOpened_TimeButtonPressed_power50()
         {
 
-                powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-                timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            sw.GetStringBuilder().Clear();
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             door.Opened += Raise.EventWith(this, EventArgs.Empty);
 
-                string expected = string.Format($"Display cleared{Environment.NewLine}");
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
-
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
         }
 
         [Test]
         public void Cooking_CookingDone_DisplayCleares()
         {
 
-                powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-                timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            sw.GetStringBuilder().Clear();
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-                string expected = string.Format($"Display cleared{Environment.NewLine}");
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
-
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
         }
     }
 }

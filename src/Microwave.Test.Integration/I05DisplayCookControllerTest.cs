@@ -17,25 +17,25 @@ namespace Microwave.Test.Integration
     class I05DisplayCookControllerTest
     {
         private CookController input;
-        private Display output;
+        private Display display;
         private ITimer timer;
         private IPowerTube powerTube;
-        private IOutput Outputfortest;
+        private IOutput output;
+
         private static StringWriter sw;
+
         [SetUp]
         public void Setup()
         {
             timer = Substitute.For<ITimer>();
             powerTube = Substitute.For<IPowerTube>();
 
-            Outputfortest = new Output();
-            output = new Display(Outputfortest);
-            input = new CookController(timer,output,powerTube);
-            sw = new StringWriter();
-            Console.SetOut(sw);
+            output = Substitute.For<IOutput>();
+            display = new Display(output);
+            input = new CookController(timer, display, powerTube);
         }
 
-        [TestCase(115,1,55)]
+        [TestCase(115,1,115)]
         [TestCase(10, 0, 10)]
         [TestCase(0, 0, 0)]
         public void TimerTick_DisplaysCorrectOutput(int a, int b, int c)
@@ -45,11 +45,10 @@ namespace Microwave.Test.Integration
             timer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
 
 
-            sw.GetStringBuilder().Clear();
-            output.ShowTime(a, b);
-                string expected = string.Format($"Display shows: {a:D2}:{b:D2}{Environment.NewLine}");
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
+            display.ShowTime(a, b);
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: {a:D2}:{b:D2}")));
             input.Stop();
+
 
         }
     }

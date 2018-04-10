@@ -37,30 +37,43 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void OnTimerTick_TimeRemaining_Display()
-        {
-            input.StartCooking(50, 100);
-            input.OnTimerTick(new object(), EventArgs.Empty);
-
-            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("Display")));
-        }
-
-        [Test]
         public void OnTimerExpired_TimerOn_Returns()
         {
             input.StartCooking(50, 50);
-            input.OnTimerExpired(new object(), EventArgs.Empty);
+            input.OnTimerExpired(timer, EventArgs.Empty);
 
-            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("off")));
         }
 
         [Test]
-        public void StopCooking_ResultIsFunctionsCalled()
+        public void StartCooking_DisplayTimeRemaining()
         {
-            input.Stop();
-            timer.Received(1).Stop();
-            powerTube.Received(1).TurnOff();
+            input.StartCooking(50, 21);
+
+            Thread.Sleep(1000);
+
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: {(21 / 60) / 1000}:{(21 % 60) / 1000}")));
         }
 
+        [Test]
+        public void StopCooking_OnTimerExpired_DisplayTurnedOff()
+        {
+            input.StartCooking(50, 21);
+            input.Stop();
+
+            Thread.Sleep(1000);
+
+            output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: {(21 / 60) / 1000}:{(21 % 60) / 1000}")));
+        }
+
+        [Test]
+        public void StartCooking_OnTimerTick_DisplayTimeRemaining()
+        {
+            input.StartCooking(50, 21);
+
+            input.OnTimerTick(timer, EventArgs.Empty);
+
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: 00:21")));
+        }
     }
 }
