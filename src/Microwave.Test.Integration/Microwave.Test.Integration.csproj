@@ -92,17 +92,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="I04PowerTubeCookControllerTest.cs" />
-    <Compile Include="I10UserInterfaceDoorTest.cs" />
-    <Compile Include="I02OutputDisplayTest.cs" />
-    <Compile Include="I03OutputPowerTubeTest.cs" />
-    <Compile Include="I08CookControllerUserInterfaceTest.cs" />
-    <Compile Include="I05DisplayCookControllerTest.cs" />
-    <Compile Include="I07DisplayUserInterfaceTest.cs" />
-    <Compile Include="I06LightUserInterfaceTest.cs" />
-    <Compile Include="I09UserInterfaceButtonTest.cs" />
-    <Compile Include="I01OutputLightTest.cs" />
-    <Compile Include="I04TimerCookControllerTest.cs" />
+    <Compile Include="I05CookControllerPowerTubeTest.cs" />
+    <Compile Include="I11DoorUserInterfaceTest.cs" />
+    <Compile Include="I02DisplayOutputTest.cs" />
+    <Compile Include="I03PowerTubeOutputTest.cs" />
+    <Compile Include="I09UserInterfaceCookControllerTest.cs" />
+    <Compile Include="I04CookControllerDisplayTest.cs" />
+    <Compile Include="I08UserInterfaceDisplayTest.cs" />
+    <Compile Include="I07UserInterfaceLightTest.cs" />
+    <Compile Include="I10ButtonUserInterfaceTest.cs" />
+    <Compile Include="I01LightOutputTest.cs" />
+    <Compile Include="I06CookControllerTimerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

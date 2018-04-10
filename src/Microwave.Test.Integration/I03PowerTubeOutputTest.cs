@@ -11,7 +11,8 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    class I03OutputPowerTubeTest
+    [TestFixture]
+    class I03PowerTubeOutputTest
     {
         private IPowerTube input;
         private IOutput output;

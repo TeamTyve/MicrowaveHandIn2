@@ -14,15 +14,13 @@ namespace Microwave.Test.Integration
 {
 
     [TestFixture]
-    class I05DisplayCookControllerTest
+    class I04CookControllerDisplayTest
     {
         private CookController input;
         private Display display;
         private ITimer timer;
         private IPowerTube powerTube;
         private IOutput output;
-
-        private static StringWriter sw;
 
         [SetUp]
         public void Setup()

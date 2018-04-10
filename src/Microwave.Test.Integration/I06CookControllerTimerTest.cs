@@ -16,7 +16,7 @@ using Timer = MicrowaveOvenClasses.Boundary.Timer;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    class I04TimerCookControllerTest
+    class I06CookControllerTimerTest
     {
         private CookController input;
         private ITimer timer;

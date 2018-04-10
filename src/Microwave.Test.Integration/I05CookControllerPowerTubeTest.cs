@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    class I04PowerTubeCookControllerTest
+    class I05CookControllerPowerTubeTest
     {
         private CookController input;
         private ITimer timer;

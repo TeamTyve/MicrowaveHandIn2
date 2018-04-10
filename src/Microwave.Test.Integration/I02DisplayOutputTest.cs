@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    class I02OutputDisplayTest
+    class I02DisplayOutputTest
     {
         private Display input;
         private Output output;

@@ -11,7 +11,8 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    public class I10UserInterfaceDoorTest
+    [TestFixture]
+    public class I11DoorUserInterfaceTest
     {
         private IUserInterface userInterface;
         private IButton powerButton;
