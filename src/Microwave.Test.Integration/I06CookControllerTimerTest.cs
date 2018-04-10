@@ -73,7 +73,7 @@ namespace Microwave.Test.Integration
 
             input.OnTimerTick(timer, EventArgs.Empty);
 
-            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: 00:21")));
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows:")));
         }
     }
 }
