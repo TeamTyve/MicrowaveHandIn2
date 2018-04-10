@@ -73,7 +73,8 @@ namespace Microwave.Test.Integration
 
             input.OnTimerTick(timer, EventArgs.Empty);
 
-            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"00:21")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"50 %")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"00:21")));
         }
     }
 }
