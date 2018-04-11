@@ -50,10 +50,9 @@ namespace Microwave.Test.Integration
         {
             input.StartCooking(50, 21);
 
-            Thread.Sleep(1000);
-            input.OnTimerTick(timer, EventArgs.Empty);
+            Thread.Sleep(1300);
 
-            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: 00:21")));
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: 00:20")));
         }
 
         [Test]
