@@ -46,8 +46,6 @@ namespace Microwave.Test.Integration
             display.ShowTime(a, b);
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: {a:D2}:{b:D2}")));
             input.Stop();
-
-
         }
     }
 }
