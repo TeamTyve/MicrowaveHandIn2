@@ -18,7 +18,7 @@ namespace MicrowaveOvenClasses.Boundary
         {
             if (power < 1 || 700 < power)                                 //////////// CHANGED HERE ////////////
             {
-                throw new ArgumentOutOfRangeException("power", power, "Must be between 1 and 100 W (incl.)");
+                throw new ArgumentOutOfRangeException("power", power, "Must be between 1 and 700 W (incl.)");
             }
 
             if (IsOn)
