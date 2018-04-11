@@ -59,7 +59,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void CookingIsDone_ResultIsFunctionsCalled()
+        public void CookingIsDone_TurnedOff()
         {
             input.OnPowerPressed(powerButton, EventArgs.Empty);
             input.OnTimePressed(timeButton, EventArgs.Empty);
@@ -75,7 +75,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void DoorOpened_StopCooking()
+        public void DoorOpened_StopCooking_DisplayTurnedOff()
         {
             input.OnPowerPressed(powerButton, EventArgs.Empty);
             input.OnTimePressed(timeButton, EventArgs.Empty);
@@ -91,7 +91,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void StartCancelButtonPressed_ResultIsStopCooking()
+        public void StartCancelButtonPressed_DisplayCleared()
         {
             input.OnPowerPressed(powerButton, EventArgs.Empty);
             input.OnTimePressed(timeButton, EventArgs.Empty);
