@@ -39,38 +39,38 @@ namespace MicrowaveOven.Automatic.Application
             Console.WriteLine();
 
             Thread.Sleep(1000);
-            Console.WriteLine("Powerbutton pressed");
+            Console.WriteLine("\nUser - Powerbutton pressed");
 
             powerBtn.Press();
 
             Thread.Sleep(250);
-            Console.WriteLine("Powerbutton pressed");
+            Console.WriteLine("\nUser - Powerbutton pressed");
 
             powerBtn.Press();
             Thread.Sleep(250);
-            Console.WriteLine("Powerbutton pressed");
+            Console.WriteLine("\nUser - Powerbutton pressed");
             powerBtn.Press();
             Thread.Sleep(250);
 
-            Console.WriteLine("Timebutton pressed");
+            Console.WriteLine("\nUser - Timebutton pressed");
             timeBtn.Press();
             Thread.Sleep(250);
 
-            Console.WriteLine("Startbutton pressed");
+            Console.WriteLine("\nUser - Startbutton pressed");
             startCancelBtn.Press();
             Thread.Sleep(10000);
 
-            Console.WriteLine("Startbutton pressed");
+            Console.WriteLine("\nUser - Startbutton pressed");
             startCancelBtn.Press();
 
             Thread.Sleep(250);
 
-            Console.WriteLine("Door Opens");
+            Console.WriteLine("\nUser - Door Opens");
             door.Open();
 
             Thread.Sleep(250);
 
-            Console.WriteLine("Door Closes");
+            Console.WriteLine("\nUser - Door Closes");
             door.Close();
 
         }
