@@ -78,11 +78,5 @@ namespace Microwave.Test.Integration
 
             output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.Contains("off")));
         }
-
-
-
-
-
-
     }
 }
