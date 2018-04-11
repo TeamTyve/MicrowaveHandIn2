@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microwave.Test.Integration"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrowaveOven.Application", "MicrowaveOven.Application\MicrowaveOven.Application.csproj", "{C2450E03-A994-4FC8-8DEC-0604DD412DB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrowaveOven.Automatic.Application", "MicrowaveOven.Automatic.Application\MicrowaveOven.Automatic.Application.csproj", "{2001F269-8F6F-46E8-B67E-E54E362DE93D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{C2450E03-A994-4FC8-8DEC-0604DD412DB8}.Release|x64.Build.0 = Release|Any CPU
 		{C2450E03-A994-4FC8-8DEC-0604DD412DB8}.Release|x86.ActiveCfg = Release|Any CPU
 		{C2450E03-A994-4FC8-8DEC-0604DD412DB8}.Release|x86.Build.0 = Release|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Debug|x64.Build.0 = Debug|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Debug|x86.Build.0 = Debug|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Release|x64.ActiveCfg = Release|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Release|x64.Build.0 = Release|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Release|x86.ActiveCfg = Release|Any CPU
+		{2001F269-8F6F-46E8-B67E-E54E362DE93D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

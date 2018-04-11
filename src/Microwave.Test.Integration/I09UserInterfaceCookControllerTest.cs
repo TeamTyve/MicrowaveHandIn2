@@ -54,7 +54,7 @@ namespace Microwave.Test.Integration
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
-            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 %")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 W")));
 
         }
 
@@ -70,7 +70,7 @@ namespace Microwave.Test.Integration
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
-            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 %")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 W")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
         }
 
@@ -86,7 +86,7 @@ namespace Microwave.Test.Integration
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
-            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 %")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 W")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
         }
 
@@ -102,7 +102,7 @@ namespace Microwave.Test.Integration
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("on")));
-            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 %")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 W")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
 

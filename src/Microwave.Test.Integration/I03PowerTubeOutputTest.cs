@@ -35,7 +35,7 @@ namespace Microwave.Test.Integration
             Assert.Throws<ArgumentOutOfRangeException>(() => input.TurnOn(power));
         }
 
-        [TestCase(1)]
+        [TestCase(50)]
         [TestCase(700)]
         public void TurnOn_NoThrow(int power)
         {
@@ -45,14 +45,14 @@ namespace Microwave.Test.Integration
         [Test]
         public void TurnOn_IsOn_ThrowsException()
         {
-            input.TurnOn(1);
-            Assert.Throws<ApplicationException>(() => input.TurnOn(1));
+            input.TurnOn(50);
+            Assert.Throws<ApplicationException>(() => input.TurnOn(50));
         }
 
         [Test]
         public void TurnOff_IsOn_OutputsTurnedOff()
         {
-            input.TurnOn(1);
+            input.TurnOn(50);
             sw = new StringWriter();
             Console.SetOut(sw);
             input.TurnOff();
@@ -65,8 +65,8 @@ namespace Microwave.Test.Integration
         {
             sw = new StringWriter();
             Console.SetOut(sw);
-            input.TurnOn(1);
-            var expected = $"PowerTube works with 1 %{Environment.NewLine}";
+            input.TurnOn(50);
+            var expected = $"PowerTube works with 50 W{Environment.NewLine}";
             Assert.That(expected, Is.EqualTo(sw.ToString()));
         }
 

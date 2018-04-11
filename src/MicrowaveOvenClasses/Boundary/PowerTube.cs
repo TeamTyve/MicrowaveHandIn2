@@ -18,7 +18,7 @@ namespace MicrowaveOvenClasses.Boundary
         {
             if (power < 1 || 700 < power)                                 //////////// CHANGED HERE ////////////
             {
-                throw new ArgumentOutOfRangeException("power", power, "Must be between 1 and 100 % (incl.)");
+                throw new ArgumentOutOfRangeException("power", power, "Must be between 1 and 100 W (incl.)");
             }
 
             if (IsOn)
@@ -26,7 +26,7 @@ namespace MicrowaveOvenClasses.Boundary
                 throw new ApplicationException("PowerTube.TurnOn: is already on");
             }
 
-            myOutput.OutputLine($"PowerTube works with {power} %");
+            myOutput.OutputLine($"PowerTube works with {power} W");
             IsOn = true;
         }
 
