@@ -60,6 +60,16 @@ namespace Microwave.Test.Integration
             Assert.That(expected, Is.EqualTo(sw.ToString()));
         }
 
+        [Test]
+        public void TurnOn_IsOff_OutputIsOn()
+        {
+            sw = new StringWriter();
+            Console.SetOut(sw);
+            input.TurnOn(1);
+            var expected = $"PowerTube works with 1 %{Environment.NewLine}";
+            Assert.That(expected, Is.EqualTo(sw.ToString()));
+        }
+
         [TearDown]
         public void Dispose()
         {
