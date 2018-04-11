@@ -34,7 +34,7 @@ namespace Microwave.Test.Integration
 
             input.TurnOn();
             string expected = $"Light is turned on{Environment.NewLine}";
-            Assert.That(expected, Is.EqualTo(sw.ToString()));
+            Assert.That(sw.ToString(), Is.EqualTo(expected));
         }
 
         [Test]
@@ -44,7 +44,16 @@ namespace Microwave.Test.Integration
             sw.Flush();
             input.TurnOff();
             string expected = $"Light is turned off{Environment.NewLine}";
-            Assert.That(sw.ToString(), Is.EqualTo(sw.ToString()));
+            Assert.That(sw.ToString().Contains("turned off"), Is.EqualTo(expected.Contains("turned off")));
+        }
+
+        [Test]
+        public void TurnOff_WasOff_Output()
+        {
+            sw.Flush();
+            input.TurnOff();
+            string expected = $"";
+            Assert.That(sw.ToString(), Is.EqualTo(expected));
         }
 
         [TearDown]
