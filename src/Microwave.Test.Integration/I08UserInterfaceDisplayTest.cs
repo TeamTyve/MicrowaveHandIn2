@@ -67,7 +67,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void Ready_21powerbutton_power50()
+        public void Ready_HighPower_ReturnsSetting()
         {
 
             for (int i = 50; i <= 1000; i += 50)
@@ -82,7 +82,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void CancelButton_DisplayCleared_power50()
+        public void CancelButton_DisplayCleared()
         {
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -91,7 +91,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void Dooropened_DisplayCleared_power50()
+        public void Dooropened_DisplayCleared()
         {
 
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -101,7 +101,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void TimeButton_power50()
+        public void TimeButton_display0100()
         {
 
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -112,7 +112,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void TimeButton_Pressed2_power50()
+        public void TimeButton_Pressed2_Display0200()
         {
 
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -123,7 +123,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void DoorOpened_TimeButtonPressed_power50()
+        public void DoorOpened_TimeButtonPressed_DisplayCleared()
         {
 
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
