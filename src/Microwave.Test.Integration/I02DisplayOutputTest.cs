@@ -31,7 +31,7 @@ namespace Microwave.Test.Integration
                 Console.SetOut(sw);
                 input.ShowTime(a, b);
                 string expected = string.Format($"Display shows: {a:D2}:{b:D2}{Environment.NewLine}");
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
+                Assert.That(sw.ToString(), Is.EqualTo(expected));
             }
         }
 
@@ -44,7 +44,7 @@ namespace Microwave.Test.Integration
                 Console.SetOut(sw);
                 input.ShowPower(a);
                 string expected = string.Format($"Display shows: {a} W{Environment.NewLine}");
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
+                Assert.That(sw.ToString(), Is.EqualTo(expected));
             }
         }
 
@@ -57,7 +57,7 @@ namespace Microwave.Test.Integration
                 Console.SetOut(sw);
                 input.Clear();
                 string expected = string.Format($"Display cleared{Environment.NewLine}");
-                Assert.That(expected, Is.EqualTo(sw.ToString()));
+                Assert.That(sw.ToString(), Is.EqualTo(expected));
             }
         }
     }
