@@ -76,5 +76,17 @@ namespace Microwave.Test.Integration
 
             output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"00:21")));
         }
+
+        [Test]
+        public void StartCooking_OnTimerExpire_NoTimeRemaining()
+        {
+            input.StartCooking(50, 1);
+
+            Thread.Sleep(3000);
+
+            input.OnTimerTick(timer, EventArgs.Empty);
+
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"off")));
+        }
     }
 }
