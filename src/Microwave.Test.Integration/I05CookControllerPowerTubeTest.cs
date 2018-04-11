@@ -23,7 +23,7 @@ namespace Microwave.Test.Integration
         {
             timer = Substitute.For<ITimer>();
             output = Substitute.For<IOutput>();
-            display = Substitute.For<IDisplay>();
+            display = new Display(output);
             ui = Substitute.For<IUserInterface>();
             powerTube = new PowerTube(output);
             input = new CookController(timer, display, powerTube, ui);

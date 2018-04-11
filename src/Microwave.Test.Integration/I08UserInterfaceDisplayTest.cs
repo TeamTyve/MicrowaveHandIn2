@@ -34,7 +34,7 @@ namespace Microwave.Test.Integration
             timeButton = Substitute.For<IButton>();
             startCancelButton = Substitute.For<IButton>();
             door = Substitute.For<IDoor>();
-            light = Substitute.For<ILight>();
+            light = new Light(output);
             cookController = Substitute.For<ICookController>();
             input = new UserInterface(powerButton,
                 timeButton,
